@@ -8,18 +8,66 @@ using UnityEngine;
 /// </summary>
 public class BoundsCheck : MonoBehaviour {
     [Header("Set in Inspector")]
-    bool placeholder1; // here to keep VS from freaking out - DELETE IT
+
+    public float radius = 1f;
 
     [Header("Set Dynamically")]
-    bool placeholder2; // here to keep VS from freaking out - DELETE IT
+
+    public float camWidth;
+
+    public float camHeight;
+
 
     void Awake()
     {
+        camHeight = Camera.main.orthographicSize;                            
 
+        camWidth = camHeight * Camera.main.aspect;
     }
 
     void LateUpdate()
     {
+
+        Vector3 pos = transform.position;
+
+
+
+        if (pos.x > camWidth - radius)
+        {
+
+            pos.x = camWidth - radius;
+
+        }
+
+
+
+
+        if (pos.x < -camWidth + radius)
+        {
+
+            pos.x = -camWidth + radius;
+
+        }
+
+
+
+        if (pos.y > camHeight - radius)
+        {
+
+            pos.y = camHeight - radius;
+
+        }
+
+        if (pos.y < -camHeight + radius)
+        {
+
+            pos.y = -camHeight + radius;
+
+        }
+
+
+
+        transform.position = pos;
 
 
     }

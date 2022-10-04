@@ -31,7 +31,7 @@ public class Enemy : MonoBehaviour {
     void Update()
     {
 
-        }
+        
     }
 
     public virtual void Move()
