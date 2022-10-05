@@ -2,7 +2,8 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Hero : MonoBehaviour {
+public class Hero : MonoBehaviour 
+{
     static public Hero S; // Singleton
 
     [Header("Set in Inspector")]
@@ -14,10 +15,21 @@ public class Hero : MonoBehaviour {
 
     public float pitchMult = 30;
 
+    public float gameRestartDelay = 2f;
+
+    public GameObject projectilePrefab;
+
+    public float projectileSpeed = 40;
+
+
 
     [Header("Set Dynamically")]
 
-    public float shieldLevel = 1;
+    [SerializeField]
+
+    private float _shieldLevel = 1; // Remember the underscore
+
+    private GameObject lastTriggerGo = null;
 
 
 
@@ -48,13 +60,13 @@ public class Hero : MonoBehaviour {
     {
 
     }
-	
-	// Update is called once per frame
-	void Update()
+
+    // Update is called once per frame
+    void Update()
     {
         // Pull in information from the Input class
 
-        float xAxis = Input.GetAxis("Horizontal");                            
+        float xAxis = Input.GetAxis("Horizontal");
 
         float yAxis = Input.GetAxis("Vertical");
 
@@ -74,12 +86,79 @@ public class Hero : MonoBehaviour {
 
         transform.rotation = Quaternion.Euler(yAxis * pitchMult, xAxis * rollMult, 0);
 
+        // Allow the ship to fire
+
+        if (Input.GetKeyDown(KeyCode.Space))
+        {
+
+            TempFire();
+
+        }
     }
 
+    void TempFire()
+    {                                                       
+
+        GameObject projGO = Instantiate<GameObject>(projectilePrefab);
+
+        projGO.transform.position = transform.position;
+
+        Rigidbody rigidB = projGO.GetComponent<Rigidbody>();
+
+        rigidB.velocity = Vector3.up * projectileSpeed;
+
+    }
+
+
+    void OnTriggerEnter(Collider other)
+    {
+
+        Transform rootT = other.gameObject.transform.root;
+
+        GameObject go = rootT.gameObject;
+
+        //print("Triggered: "+go.name);                                      
+
+
+
+        // Make sure it's not the same triggering go as last time
+
+        if (go == lastTriggerGo)
+        {                                           
+
+            return;
+
+        }
+
+        lastTriggerGo = go;                                                  
+
+
+
+        if (go.tag == "Enemy")
+        {  // If the shield was triggered by an enemy
+
+            shieldLevel--;        // Decrease the level of the shield by 1
+
+            Destroy(go);          // … and Destroy the enemy                 
+
+        }
+        else
+        {
+
+            print("Triggered by non-Enemy: " + go.name);                       
+
+        }
+
+    }
+
+    
+
+    /*
     private void OnTriggerEnter(Collider other)
     {
 
     }
+    */
 
     public void AbsorbPowerUp(GameObject go)
     {
@@ -88,7 +167,33 @@ public class Hero : MonoBehaviour {
 
     public float shieldLevel
     {
-        get;set;
+
+        get
+        {
+
+            return (_shieldLevel);                                          
+
+        }
+
+        set
+        {
+
+            _shieldLevel = Mathf.Min(value, 4);                             
+
+            // If the shield is going to be set to less than zero
+
+            if (value < 0)
+            {                                                 
+
+                Destroy(this.gameObject);
+
+                // Tell Main.S to restart the game after a delay
+                Main.S.DelayedRestart(gameRestartDelay);
+
+            }
+
+        }
+
     }
 
 }

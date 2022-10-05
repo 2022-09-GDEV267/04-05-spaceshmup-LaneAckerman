@@ -5,7 +5,7 @@ using UnityEngine;
 public class Projectile : MonoBehaviour {
 
     [Header("Set In Inspector")]
-    bool placeholder1; // here to keep VS from freaking out - DELETE IT
+    private BoundsCheck bndCheck;
 
     [Header("Set Dynamically")]
     bool placeholder2; // here to keep VS from freaking out - DELETE IT
@@ -13,12 +13,19 @@ public class Projectile : MonoBehaviour {
 
     private void Awake()
     {
-
+        bndCheck = GetComponent<BoundsCheck>();
     }
 
     private void Update()
     {
-      
+
+        if (bndCheck.offUp)
+        {                                                
+
+            Destroy(gameObject);
+
+        }
+
     }
 
     
