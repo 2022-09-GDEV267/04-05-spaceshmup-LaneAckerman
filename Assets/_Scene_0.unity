@@ -361,11 +361,6 @@ MonoBehaviour:
   - {fileID: 1864666716847092, guid: de37edcf9d3c900408eb0246ee5dbb34, type: 3}
   - {fileID: 1864666716847092, guid: 23498a469cc3eff48beec31ea7c1dd59, type: 3}
   - {fileID: 1864666716847092, guid: 78c5d76e60a4a9245a95f65a2a807ed8, type: 3}
-  - {fileID: 1801717105832950, guid: cb4206b8e00300649994ecf8ffe838d5, type: 3}
-  - {fileID: 1801717105832950, guid: cb4206b8e00300649994ecf8ffe838d5, type: 3}
-  - {fileID: 1158547974957732, guid: a0a74b7d2e3ac2449b0e77185af83fed, type: 3}
-  - {fileID: 1700942416061258, guid: 3f6055558a488314cb38691d88c41fdf, type: 3}
-  - {fileID: 1539775467464788, guid: 06677ec088bca734db80dc6ecea1d7af, type: 3}
   enemySpawnPerSecond: 0.5
   enemyDefaultPadding: 1.5
 --- !u!20 &282840813
@@ -883,12 +878,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 068597007208b5040be849aebe1595f5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  poi: {fileID: 1342965577}
-  panels:
-  - {fileID: 625516129}
-  - {fileID: 209590096}
-  scrollSpeed: -30
-  motionMult: 0.25
 --- !u!64 &1295224116
 MeshCollider:
   m_ObjectHideFlags: 0
