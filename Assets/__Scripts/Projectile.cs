@@ -2,115 +2,120 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Projectile : MonoBehaviour {
 
-    [Header("Set In Inspector")]
-    private BoundsCheck bndCheck;
+namespace ShmupPlus
+{
+    public class Projectile : MonoBehaviour
+    {
 
-    private Renderer rend;
+        [Header("Set In Inspector")]
+        private BoundsCheck bndCheck;
 
-
-
-
-    [Header("Set Dynamically")]
-
-
-    public Rigidbody rigid;
-
-
-    [SerializeField]                                                        
-
-
-    private WeaponType _type;
+        private Renderer rend;
 
 
 
 
-    // This public property masks the field _type and takes action when it is set
+        [Header("Set Dynamically")]
 
 
-    public WeaponType type
-    {                                           
+        public Rigidbody rigid;
 
 
-        get
+        [SerializeField]
+
+
+        private WeaponType _type;
+
+
+
+
+        // This public property masks the field _type and takes action when it is set
+
+
+        public WeaponType type
         {
 
 
-            return (_type);
+            get
+            {
+
+
+                return (_type);
+
+
+            }
+
+
+            set
+            {
+
+
+                SetType(value);
+
+
+            }
 
 
         }
 
+        private void Awake()
+        {
+            bndCheck = GetComponent<BoundsCheck>();
 
-        set
+            rend = GetComponent<Renderer>();
+
+            rigid = GetComponent<Rigidbody>();
+        }
+
+        private void Update()
+        {
+
+            if (bndCheck.offUp)
+            {
+
+                Destroy(gameObject);
+
+            }
+
+        }
+
+
+
+        /// <summary>
+
+
+        /// Sets the _type private field and colors this projectile to match the
+
+
+        ///   WeaponDefinition.
+
+
+        /// </summary>
+
+
+        /// <param name="eType">The WeaponType to use.</param>
+
+
+        public void SetType(WeaponType eType)
         {
 
 
-            SetType(value);                                                
+            // Set the _type
+
+
+            _type = eType;
+
+
+            WeaponDefinition def = Main.GetWeaponDefinition(_type);
+
+
+            rend.material.color = def.projectileColor;
 
 
         }
 
 
-    }
-
-    private void Awake()
-    {
-        bndCheck = GetComponent<BoundsCheck>();
-
-        rend = GetComponent<Renderer>();                                     
-
-        rigid = GetComponent<Rigidbody>();
-    }
-
-    private void Update()
-    {
-
-        if (bndCheck.offUp)
-        {                                                
-
-            Destroy(gameObject);
-
-        }
 
     }
-
-
-
-    /// <summary>
-
-
-    /// Sets the _type private field and colors this projectile to match the
-
-
-    ///   WeaponDefinition.
-
-
-    /// </summary>
-
-
-    /// <param name="eType">The WeaponType to use.</param>
-
-
-    public void SetType(WeaponType eType)
-    {                               
-
-
-        // Set the _type
-
-
-        _type = eType;
-
-
-        WeaponDefinition def = Main.GetWeaponDefinition(_type);
-
-
-        rend.material.color = def.projectileColor;
-
-
-    }
-
-
-
 }
