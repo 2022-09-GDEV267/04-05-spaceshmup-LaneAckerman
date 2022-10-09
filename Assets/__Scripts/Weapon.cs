@@ -6,9 +6,8 @@ using System.Collections.Generic;
 
 using UnityEngine;
 
+using ShmupPlus;
 
-namespace ShmupPlus
-{
 
     /// <summary>
 
@@ -298,4 +297,4 @@ namespace ShmupPlus
 
         }
     }
-}
+

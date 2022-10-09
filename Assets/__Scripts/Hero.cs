@@ -3,8 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 
 
-namespace ShmupPlus
-{
+
     public class Hero : MonoBehaviour
     {
         static public Hero S; // Singleton
@@ -23,6 +22,8 @@ namespace ShmupPlus
         public GameObject projectilePrefab;
 
         public float projectileSpeed = 40;
+
+        public Weapon[] weapons;
 
 
 
@@ -47,7 +48,7 @@ namespace ShmupPlus
 
 
 
-        void Awake()
+        void Start()
         {
 
             if (S == null)
@@ -59,6 +60,13 @@ namespace ShmupPlus
             }
 
             //fireDelegate += TempFire;
+
+
+            // Reset the weapons to start _Hero with 1 blaster
+
+            ClearWeapons();
+
+            weapons[0].SetType(WeaponType.blaster);
 
             /*
             else
@@ -75,10 +83,7 @@ namespace ShmupPlus
 
 
 
-        void Start()
-        {
-
-        }
+        
 
         // Update is called once per frame
         void Update()
@@ -198,6 +203,14 @@ namespace ShmupPlus
                 Destroy(go);          // … and Destroy the enemy                 
 
             }
+            else if (go.tag == "PowerUp")
+            {
+
+                // If the shield was triggered by a PowerUp
+
+                AbsorbPowerUp(go);
+
+            }
             else
             {
 
@@ -218,8 +231,52 @@ namespace ShmupPlus
 
         public void AbsorbPowerUp(GameObject go)
         {
+            PowerUp pu = go.GetComponent<PowerUp>();
+
+            switch (pu.type)
+            {
+
+                case WeaponType.shield:                                          
+
+                    shieldLevel++;
+
+                    break;
+
+
+
+                default:                                                         
+
+                    if (pu.type == weapons[0].type)
+                    { // If it is the same type  
+
+                        Weapon w = GetEmptyWeaponSlot();
+
+                        if (w != null)
+                        {
+
+                            // Set it to pu.type
+
+                            w.SetType(pu.type);
+
+                        }
+
+                    }
+                    else
+                    { // If this is a different weapon type               
+
+                        ClearWeapons();
+
+                        weapons[0].SetType(pu.type);
+
+                    }
+
+                    break;
+            }
+
+            pu.AbsorbedBy(this.gameObject);
 
         }
+    
 
         public float shieldLevel
         {
@@ -252,5 +309,38 @@ namespace ShmupPlus
 
         }
 
+        Weapon GetEmptyWeaponSlot()
+        {
+
+            for (int i = 0; i < weapons.Length; i++)
+            {
+
+                if (weapons[i].type == WeaponType.none)
+                {
+
+                    return (weapons[i]);
+
+                }
+
+            }
+
+            return (null);
+
+        }
+
+
+
+        void ClearWeapons()
+        {
+
+            foreach (Weapon w in weapons)
+            {
+
+                w.SetType(WeaponType.none);
+
+            }
+
+        }
+
     }
-}
+

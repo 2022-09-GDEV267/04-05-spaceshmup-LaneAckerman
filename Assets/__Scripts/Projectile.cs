@@ -3,8 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 
 
-namespace ShmupPlus
-{
+
     public class Projectile : MonoBehaviour
     {
 
@@ -118,4 +117,4 @@ namespace ShmupPlus
 
 
     }
-}
+

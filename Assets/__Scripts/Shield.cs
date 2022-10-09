@@ -3,8 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 
 
-namespace ShmupPlus
-{
+
     public class Shield : MonoBehaviour
     {
         [Header("Set in Inspector")]
@@ -39,4 +38,4 @@ namespace ShmupPlus
             transform.rotation = Quaternion.Euler(0, 0, rZ);
         }
     }
-}
+

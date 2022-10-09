@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using ShmupPlus;
 
 
 namespace ShmupPlus
@@ -196,7 +197,7 @@ namespace ShmupPlus
                     if (allDestroyed) // If it IS completely destroyed...
                     {
                         // ...tell the Main singleton that this ship was destroyed
-                        Main.S.ShipDestroyed(this);
+                        Main.S.shipDestroyed(this);
                         // Destroy this Enemy
                         Destroy(this.gameObject);
                     }

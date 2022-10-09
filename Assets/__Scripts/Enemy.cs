@@ -109,8 +109,19 @@ namespace ShmupPlus
                     health -= Main.GetWeaponDefinition(p.type).damageOnHit;
 
                     if (health <= 0)
-                    {                                           
+                    {
 
+
+                        // Tell the Main singleton that this ship was destroyed 
+                        if (!notifiedOfDestruction)
+                        {
+
+
+                            Main.S.shipDestroyed(this);
+
+
+                        }
+                        notifiedOfDestruction = true;
                         // Destroy this Enemy
 
                         Destroy(this.gameObject);

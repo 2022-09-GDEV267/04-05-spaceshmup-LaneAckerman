@@ -3,8 +3,6 @@ using System.Collections.Generic;
 using UnityEngine;
 using ShmupPlus;
 
-namespace ShmupPlus
-{
     public class PowerUp : MonoBehaviour
     {
 
@@ -114,4 +112,4 @@ namespace ShmupPlus
             Destroy(this.gameObject);
         }
     }
-}
+
