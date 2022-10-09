@@ -369,38 +369,31 @@ MonoBehaviour:
   enemySpawnPerSecond: 0.5
   enemyDefaultPadding: 1.5
   weaponDefinitions:
-  - type: 0
-    letter: 
-    color: {r: 0, g: 0, b: 0, a: 0}
-    projectilePrefab: {fileID: 0}
-    projectileColor: {r: 0, g: 0, b: 0, a: 0}
-    damageOnHit: 0
+  - type: 1
+    letter: B
+    color: {r: 1, g: 1, b: 1, a: 1}
+    projectilePrefab: {fileID: 1899541879965282, guid: 59a4640edad59f94a87c1d235355cb6a,
+      type: 3}
+    projectileColor: {r: 1, g: 1, b: 1, a: 1}
+    damageOnHit: 1
     continuousDamage: 0
-    delayBetweenShots: 0
-    velocity: 0
-  - type: 0
-    letter: 
-    color: {r: 0, g: 0, b: 0, a: 0}
-    projectilePrefab: {fileID: 0}
-    projectileColor: {r: 0, g: 0, b: 0, a: 0}
-    damageOnHit: 0
+    delayBetweenShots: 0.2
+    velocity: 50.02
+  - type: 2
+    letter: S
+    color: {r: 0, g: 0.8124149, b: 1, a: 1}
+    projectilePrefab: {fileID: 1899541879965282, guid: 59a4640edad59f94a87c1d235355cb6a,
+      type: 3}
+    projectileColor: {r: 0, g: 0.8117647, b: 1, a: 1}
+    damageOnHit: 1
     continuousDamage: 0
-    delayBetweenShots: 0
-    velocity: 0
+    delayBetweenShots: 0.4
+    velocity: 50
   - type: 0
-    letter: 
-    color: {r: 0, g: 0, b: 0, a: 0}
+    letter: O
+    color: {r: 0, g: 1, b: 0.24291492, a: 1}
     projectilePrefab: {fileID: 0}
-    projectileColor: {r: 0, g: 0, b: 0, a: 0}
-    damageOnHit: 0
-    continuousDamage: 0
-    delayBetweenShots: 0
-    velocity: 0
-  - type: 0
-    letter: 
-    color: {r: 0, g: 0, b: 0, a: 0}
-    projectilePrefab: {fileID: 0}
-    projectileColor: {r: 0, g: 0, b: 0, a: 0}
+    projectileColor: {r: 0.9716981, g: 0.9487807, b: 0.9487807, a: 1}
     damageOnHit: 0
     continuousDamage: 0
     delayBetweenShots: 0
