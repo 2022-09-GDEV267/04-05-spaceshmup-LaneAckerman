@@ -189,7 +189,7 @@ public class Main : MonoBehaviour
 
         // Reload _Scene_0 to restart the game
 
-        SceneManager.LoadScene(1);
+        SceneManager.LoadScene(0);
 
     }
 
