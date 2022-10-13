@@ -11,4 +11,7 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/_Scene_0.unity
     guid: 4b6cfbec12cf9354a8704bc7ecc53f0a
+  - enabled: 1
+    path: Assets/_ShmupPlusAssets/_SpaceSHMUP-Plus.unity
+    guid: ab77114038defd3418487ff30490d90c
   m_configObjects: {}
