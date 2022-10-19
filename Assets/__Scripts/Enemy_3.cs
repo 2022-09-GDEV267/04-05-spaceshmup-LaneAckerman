@@ -6,6 +6,10 @@ using System.Collections.Generic;
 
 using UnityEngine;
 
+
+using UnityEngine.UI;
+
+
 namespace ShmupPlus
 {
 
@@ -110,6 +114,15 @@ namespace ShmupPlus
 
 
             birthTime = Time.time;
+
+
+            // Find a reference to the ScoreCounter GameObject
+
+            GameObject scoreGO = GameObject.Find("ScoreCounter");
+
+            // Get the Text Component of that GameObject
+
+            scoreGT = scoreGO.GetComponent<Text>();
 
 
         }

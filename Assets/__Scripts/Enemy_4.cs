@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 using ShmupPlus;
 
 
@@ -54,6 +55,14 @@ namespace ShmupPlus
                     prt.mat = prt.go.GetComponent<Renderer>().material;
                 }
             }
+
+            // Find a reference to the ScoreCounter GameObject
+
+            GameObject scoreGO = GameObject.Find("ScoreCounter");
+
+            // Get the Text Component of that GameObject
+
+            scoreGT = scoreGO.GetComponent<Text>();
         }
 
         void InitMovement()

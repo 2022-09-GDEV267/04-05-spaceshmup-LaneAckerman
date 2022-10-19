@@ -252,8 +252,17 @@ using ShmupPlus;
                     break;
 
 
+                case WeaponType.laser:
 
-            }
+                    p = MakeProjectile();
+
+                    p.rigid.velocity = vel;
+
+                    break;
+
+
+
+        }
 
         }
 
