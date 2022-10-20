@@ -66,7 +66,7 @@ using UnityEngine;
 
             ClearWeapons();
 
-            weapons[0].SetType(WeaponType.blaster);
+            weapons[0].SetType(WeaponType.laser);
 
             /*
             else
